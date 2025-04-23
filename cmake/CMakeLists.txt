@@ -14,3 +14,5 @@ add_executable(myapp ${SOURCES})
 # Handle C++-specific dependencies
 find_package(Threads)  # Example for C++ projects
 target_link_libraries(myapp PRIVATE ${M_LIB} Threads::Threads)
+
+install(TARGETS myapp DESTINATION bin)

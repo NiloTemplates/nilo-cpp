@@ -10,7 +10,7 @@ autotools:
 	cd autotools && autoreconf -ivf && ./configure --prefix=$(PWD)/build && make && make install
 
 cmake:
-	mkdir -p cmake/build && cd cmake/build && cmake .. && make
+	mkdir -p cmake/build && cd cmake/build && cmake .. && cmake --install . --prefix $(PWD)/build
 
 meson:
 	mkdir -p meson/builddir && cd meson/builddir && meson .. && ninja

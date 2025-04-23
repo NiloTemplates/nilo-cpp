@@ -1,0 +1,1 @@
+/usr/bin/cc "CMakeFiles/myapp.dir/c/development/egt/customers/egt/nilo/nilo-templates/nilo-cpp/src/main.c.o" -o myapp
