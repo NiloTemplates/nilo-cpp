@@ -1,0 +1,14 @@
+project('myproject', ['c', 'cxx'], version: '1.0')  # Declare C++ support
+
+# Discover all C/C++ sources
+sources = run_command(
+  'sh', '-c', 'find ../src -type f \( -name "*.c" -o -name "*.cpp" -o -name "*.cxx" -o -name "*.c++" \) -printf "\'%p\', "',
+  check: true
+).stdout().strip().split(', ')[0..-2]  # Remove trailing comma
+
+executable('myapp', 
+  sources,
+  dependencies: [m_dep, dependency('threads')],  # C++ example dep
+  c_args: ['-g'],       # C flags
+  cpp_args: ['-g'],     # C++ flags
+)
