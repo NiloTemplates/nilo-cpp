@@ -13,7 +13,7 @@ cmake:
 	mkdir -p cmake/build && cd cmake/build && cmake .. && cmake --install . --prefix $(PWD)/build
 
 meson:
-	mkdir -p meson/builddir && cd meson/builddir && meson .. && ninja
+	mkdir -p meson/builddir && cd meson/builddir && meson setup .. --prefix=$(PWD)/build --buildtype=release && ninja && ninja install
 
 clean:
 	rm -rf \
