@@ -3,4 +3,9 @@
 /builddir
 /dist
 /package
-
+/builders/autotools/Makefile
+/builders/autotools/configure
+/builders/autotools/config.status
+/builders/autotools/build
+/builders/cmake/build
+/builders/meson/builddir
