@@ -6,7 +6,7 @@ message('Project source root: ' + meson.project_source_root())
 message('Current source dir: ' + meson.current_source_dir())
 
 # Recursive source discovery with fallbacks
-src_dir = meson.project_source_root() / '..' / 'src'
+src_dir = meson.project_source_root() / '..' / '..' / 'src'
 message('Looking for sources in: ' + src_dir)
 
 sources = []

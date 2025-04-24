@@ -3,10 +3,10 @@ project(myproject VERSION 1.0 LANGUAGES C CXX)  # Enable C++
 
 # Glob all C/C++ sources
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
-  "../src/*.c"
-  "../src/*.cpp"
-  "../src/*.cxx"
-  "../src/*.c++"
+  "../../src/*.c"
+  "../../src/*.cpp"
+  "../../src/*.cxx"
+  "../../src/*.c++"
 )
 
 add_executable(myapp ${SOURCES})

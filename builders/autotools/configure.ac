@@ -14,7 +14,7 @@ AC_SUBST([LIBM])
 
 # Conditional: Only process if not being called from CMake/Meson
 m4_ifndef([FROM_CMAKE_OR_MESON], [
-  AC_CONFIG_SRCDIR([../src/main.c])
+  AC_CONFIG_SRCDIR([../../src/main.c])
   AC_CONFIG_FILES([Makefile])
   AC_OUTPUT
 ])
