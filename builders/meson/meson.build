@@ -1,6 +1,8 @@
 project('myproject', ['c', 'cpp'], version: '1.0',
         default_options: ['cpp_std=c++17'])
 
+executable_name = get_option('EXECUTABLE_NAME')
+
 # Debug printing - show important paths
 message('Project source root: ' + meson.project_source_root())
 message('Current source dir: ' + meson.current_source_dir())
@@ -79,7 +81,7 @@ else
 endif
 
 # Build target
-executable('myapp',
+executable(executable_name,
     sources_files,
     dependencies: [dependency('threads')],
     install: true,

@@ -1,0 +1,1 @@
+option('EXECUTABLE_NAME', type: 'string', value: 'myapp', description: 'Name of the executable')

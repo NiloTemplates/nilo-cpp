@@ -9,10 +9,12 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
   "../../src/*.c++"
 )
 
-add_executable(myapp ${SOURCES})
+set(EXECUTABLE_NAME "myapp" CACHE STRING "Name of the executable")
+
+add_executable(${EXECUTABLE_NAME} ${SOURCES})
 
 # Handle C++-specific dependencies
 find_package(Threads)  # Example for C++ projects
-target_link_libraries(myapp PRIVATE ${M_LIB} Threads::Threads)
+target_link_libraries(${EXECUTABLE_NAME} PRIVATE ${M_LIB} Threads::Threads)
 
-install(TARGETS myapp DESTINATION bin)
+install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)

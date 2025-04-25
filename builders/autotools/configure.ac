@@ -2,6 +2,14 @@ AC_INIT([myproject], [1.0])
 AM_INIT_AUTOMAKE([foreign subdir-objects])
 AC_PROG_CC
 
+# Set default executable name
+DEFAULT_EXECUTABLE_NAME="myapp"
+AC_ARG_VAR([EXECUTABLE_NAME], [Name of the executable binary])
+if test "x$EXECUTABLE_NAME" = "x"; then
+    EXECUTABLE_NAME="$DEFAULT_EXECUTABLE_NAME"
+fi
+AC_SUBST([EXECUTABLE_NAME])
+
 # Feature flags (example)
 AC_ARG_ENABLE([debug], [Enable debug mode])
 AS_IF([test "x$enable_debug" = "xyes"], [

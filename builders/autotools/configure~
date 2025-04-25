@@ -613,6 +613,7 @@ am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
 LIBM
+EXECUTABLE_NAME
 am__fastdepCC_FALSE
 am__fastdepCC_TRUE
 CCDEPMODE
@@ -713,7 +714,8 @@ CC
 CFLAGS
 LDFLAGS
 LIBS
-CPPFLAGS'
+CPPFLAGS
+EXECUTABLE_NAME'
 
 
 # Initialize some variables set by options.
@@ -1354,6 +1356,8 @@ Some influential environment variables:
   LIBS        libraries to pass to the linker, e.g. -l<library>
   CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
               you have headers in a nonstandard directory <include dir>
+  EXECUTABLE_NAME
+              Name of the executable binary
 
 Use these variables to override the choices made by 'configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -4213,6 +4217,14 @@ else
   am__fastdepCC_FALSE=
 fi
 
+
+
+# Set default executable name
+DEFAULT_EXECUTABLE_NAME="myapp"
+
+if test "x$EXECUTABLE_NAME" = "x"; then
+    EXECUTABLE_NAME="$DEFAULT_EXECUTABLE_NAME"
+fi
 
 
 # Feature flags (example)
