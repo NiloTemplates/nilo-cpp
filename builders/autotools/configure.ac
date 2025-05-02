@@ -1,13 +1,23 @@
-AC_INIT([myproject], [1.0])
+AC_INIT([$PROJECT_NAME], [1.0])
 AM_INIT_AUTOMAKE([foreign subdir-objects])
 AC_PROG_CC
 
-# Set default executable name
+# Set default project and executable names
+DEFAULT_PROJECT_NAME="myproject"
 DEFAULT_EXECUTABLE_NAME="myapp"
+
+AC_ARG_VAR([PROJECT_NAME], [Name of the project])
 AC_ARG_VAR([EXECUTABLE_NAME], [Name of the executable binary])
+
+if test "x$PROJECT_NAME" = "x"; then
+    PROJECT_NAME="$DEFAULT_PROJECT_NAME"
+fi
+
 if test "x$EXECUTABLE_NAME" = "x"; then
     EXECUTABLE_NAME="$DEFAULT_EXECUTABLE_NAME"
 fi
+
+AC_SUBST([PROJECT_NAME])
 AC_SUBST([EXECUTABLE_NAME])
 
 # Feature flags (example)

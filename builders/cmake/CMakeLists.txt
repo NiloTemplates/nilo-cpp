@@ -1,4 +1,18 @@
 cmake_minimum_required(VERSION 3.10)
+
+# Allow project name to be set from command line
+if(NOT DEFINED PROJECT_NAME)
+    set(PROJECT_NAME "myproject")
+endif()
+
+project(${PROJECT_NAME} VERSION 1.0 LANGUAGES C CXX)
+
+# Set default executable name if not provided
+if(NOT DEFINED EXECUTABLE_NAME)
+    set(EXECUTABLE_NAME "myapp")
+endif()
+
+cmake_minimum_required(VERSION 3.10)
 project(myproject VERSION 1.0 LANGUAGES C CXX)  # Enable C++
 
 # Glob all C/C++ sources

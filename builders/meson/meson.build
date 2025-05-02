@@ -1,7 +1,18 @@
+# Project must be declared FIRST
 project('myproject', ['c', 'cpp'], version: '1.0',
         default_options: ['cpp_std=c++17'])
 
+# Now we can get our options
+project_name = get_option('PROJECT_NAME')
 executable_name = get_option('EXECUTABLE_NAME')
+
+# Override project name if different from default
+if project_name != 'myproject'
+  # Note: This is a bit of a hack since Meson doesn't officially support
+  # changing project name after declaration. This just ensures consistency
+  # in the build output.
+  message('Building as project: ' + project_name)
+endif
 
 # Debug printing - show important paths
 message('Project source root: ' + meson.project_source_root())

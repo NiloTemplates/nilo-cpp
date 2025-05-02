@@ -1,1 +1,2 @@
+option('PROJECT_NAME', type: 'string', value: 'myproject', description: 'Name of the project')
 option('EXECUTABLE_NAME', type: 'string', value: 'myapp', description: 'Name of the executable')
