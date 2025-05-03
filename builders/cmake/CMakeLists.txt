@@ -1,21 +1,27 @@
 cmake_minimum_required(VERSION 3.10)
 
-# Allow project name to be set from command line
+# Project configuration
 if(NOT DEFINED PROJECT_NAME)
     set(PROJECT_NAME "myproject")
 endif()
 
-project(${PROJECT_NAME} VERSION 1.0 LANGUAGES C CXX)
-
-# Set default executable name if not provided
 if(NOT DEFINED EXECUTABLE_NAME)
     set(EXECUTABLE_NAME "myapp")
 endif()
 
-cmake_minimum_required(VERSION 3.10)
-project(myproject VERSION 1.0 LANGUAGES C CXX)  # Enable C++
+if(NOT DEFINED PROJECT_TYPE)
+    set(PROJECT_TYPE "executable")
+endif()
 
-# Glob all C/C++ sources
+project(${PROJECT_NAME} VERSION 1.0 LANGUAGES C CXX)
+
+# Validate project type
+set(VALID_TYPES executable static_lib shared_lib)
+if(NOT PROJECT_TYPE IN_LIST VALID_TYPES)
+    message(FATAL_ERROR "Invalid PROJECT_TYPE: ${PROJECT_TYPE}. Must be one of: ${VALID_TYPES}")
+endif()
+
+# Source files
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
   "../../src/*.c"
   "../../src/*.cpp"
@@ -23,12 +29,26 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
   "../../src/*.c++"
 )
 
-set(EXECUTABLE_NAME "myapp" CACHE STRING "Name of the executable")
+# Build target
+if(PROJECT_TYPE STREQUAL "executable")
+    add_executable(${EXECUTABLE_NAME} ${SOURCES})
+    install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
+elseif(PROJECT_TYPE STREQUAL "static_lib")
+    add_library(${EXECUTABLE_NAME} STATIC ${SOURCES})
+    install(TARGETS ${EXECUTABLE_NAME} DESTINATION lib)
+elseif(PROJECT_TYPE STREQUAL "shared_lib")
+    add_library(${EXECUTABLE_NAME} SHARED ${SOURCES})
+    install(TARGETS ${EXECUTABLE_NAME} DESTINATION lib)
+endif()
 
-add_executable(${EXECUTABLE_NAME} ${SOURCES})
+# Dependencies
+find_package(Threads REQUIRED)
+target_link_libraries(${EXECUTABLE_NAME} PRIVATE Threads::Threads)
 
-# Handle C++-specific dependencies
-find_package(Threads)  # Example for C++ projects
-target_link_libraries(${EXECUTABLE_NAME} PRIVATE ${M_LIB} Threads::Threads)
-
-install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
+# Compiler options
+option(ENABLE_DEBUG "Enable debug mode" OFF)
+if(ENABLE_DEBUG)
+    target_compile_options(${EXECUTABLE_NAME} PRIVATE -g -O0)
+else()
+    target_compile_options(${EXECUTABLE_NAME} PRIVATE -O2)
+endif()

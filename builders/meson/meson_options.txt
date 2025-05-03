@@ -1,2 +1,3 @@
 option('PROJECT_NAME', type: 'string', value: 'myproject', description: 'Name of the project')
-option('EXECUTABLE_NAME', type: 'string', value: 'myapp', description: 'Name of the executable')
+option('EXECUTABLE_NAME', type: 'string', value: 'myapp', description: 'Name of the executable/library')
+option('PROJECT_TYPE', type: 'combo', choices: ['executable', 'static_lib', 'shared_lib'], value: 'executable', description: 'Type of project to build')
